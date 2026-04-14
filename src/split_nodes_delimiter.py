@@ -180,10 +180,15 @@ def text_to_textnodes(text):
 
 
 def markdown_to_blocks(markdown):
+    if markdown == "":
+        raise Exception("markdown if empty")
     splitted = markdown.split('\n\n')
     new = []
     for spit in splitted:
-        new.append(spit.strip())
+        stripped_spit = spit.strip()
+        if stripped_spit == "":
+            continue
+        new.append(stripped_spit.strip())
         
     
     return new
