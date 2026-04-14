@@ -28,8 +28,8 @@ def initiate(source = "./static", destination = "docs"):
 def main():
     initiate()
     basepath = "/"
-    if len(sys.argv) > 1:
-        basepath = sys.argv[1]
+    if len(sys.argv) > 2:
+        basepath = sys.argv[2]
 
     generate_pages_recursive("content", "template.html", "docs", basepath)
 
