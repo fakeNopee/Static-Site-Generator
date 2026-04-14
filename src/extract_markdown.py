@@ -8,7 +8,7 @@ def extract_title(markdown):
                 return line[2:].strip()
     raise Exception
 
-def generate_page(from_path, template_path, dest_path):
+def generate_page(from_path, template_path, dest_path, base):
     print(f"Generating page from {from_path} to {dest_path} using {template_path}")
     with open(from_path, "r") as f:
         from_content = f.read()
@@ -24,6 +24,9 @@ def generate_page(from_path, template_path, dest_path):
     title = extract_title(from_path)
     temp_content = temp_content.replace("{{ Title }}", title)
     temp_content = temp_content.replace("{{ Content }}", html_string)
+    temp_content = temp_content.replace('href="/',f'href="{base}')
+    temp_content = temp_content.replace('src="/',f'src="{base}')
+
 
     folder = os.path.dirname(dest_path)
     if dest_path:
@@ -34,7 +37,7 @@ def generate_page(from_path, template_path, dest_path):
         f.write(temp_content)
 
 
-def generate_pages_recursive(dir_path, template_path, dest_dir_path):
+def generate_pages_recursive(dir_path, template_path, dest_dir_path, base):
     
     
     dir_path_content = os.listdir(dir_path)
@@ -44,7 +47,7 @@ def generate_pages_recursive(dir_path, template_path, dest_dir_path):
 
         if os.path.isdir(current_path):
             os.mkdir(destnation_path)
-            generate_pages_recursive(current_path, template_path, destnation_path)
+            generate_pages_recursive(current_path, template_path, destnation_path, base)
         else:
             if content.endswith(".md"):
-                generate_page(current_path, template_path, f"{dest_dir_path}/{content[:-3]}.html")
+                generate_page(current_path, template_path, f"{dest_dir_path}/{content[:-3]}.html", base)

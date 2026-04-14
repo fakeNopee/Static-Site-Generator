@@ -2,14 +2,14 @@ from textnode import *
 import os
 import shutil
 from extract_markdown import *
+import sys
 
+def initiate(source = "./static", destination = "docs"):
 
-def initiate(source = "./static", destination = "public"):
-
-    if destination == "public":
+    if destination == "docs":
         if os.path.exists(destination):
-            shutil.rmtree("public")
-        os.makedirs("public")
+            shutil.rmtree("docs")
+        os.makedirs("docs")
 
 
     for copy in os.listdir(source):
@@ -27,8 +27,11 @@ def initiate(source = "./static", destination = "public"):
 
 def main():
     initiate()
-    generate_pages_recursive("content", "template.html", "public")
+    basepath = "/"
+    if len(sys.argv) > 0:
+        basepath = sys.argv[0]
 
+    generate_pages_recursive("content", "template.html", "docs", basepath)
 
 
 
