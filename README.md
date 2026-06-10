@@ -78,7 +78,7 @@ Static-Site-Generator/
 
 ## Example
 
-![Generated Website Screenshot](example/assets/example.gif)
+![Generated Website Screenshot](assets/example.gif)
 
 ## Testing
 
