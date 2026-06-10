@@ -86,7 +86,6 @@ Static-Site-Generator/
 ## Example
 
 ![Generated Website Screenshot](example/assets/example.gif)
->>>>>>> 723931e (Fixed few buggs with <code> and README)
 
 ## Testing
 
@@ -96,7 +95,3 @@ python -m pytest src/ -v
 # or
 ./test.sh
 ```
-<<<<<<< HEAD
-=======
-
->>>>>>> 723931e (Fixed few buggs with <code> and README)
