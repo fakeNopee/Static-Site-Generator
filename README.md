@@ -76,12 +76,6 @@ Static-Site-Generator/
 2. It copies everything from static/ into docs/.
 3. It recursively walks content/, converts each .md file to HTML using the custom parser, injects it into template.html, and writes the result to docs/.
 
-## Examples 
-**Input**:
-![Generated Website Screenshot](assets/images/demo-screenshot1.png)
-**Output**:
-![Generated Website Screenshot](assets/images/demo-screenshot2.png)
-=======
 ## Example
 
 ![Generated Website Screenshot](example/assets/example.gif)
