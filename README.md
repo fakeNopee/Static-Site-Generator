@@ -80,6 +80,8 @@ Static-Site-Generator/
 
 ![Generated Website Screenshot](assets/example.gif)
 
+[The thing](https://fakenopee.github.io/Static-Site-Generator/)
+
 ## Testing
 
 Run the test suite:
