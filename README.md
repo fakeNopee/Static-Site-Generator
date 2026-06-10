@@ -4,6 +4,11 @@ A simple, from-scratch **static site generator** written in pure Python. It conv
 
 Perfect for learning how static site generators work under the hood or for small personal sites and documentation.
 
+![Generated Website Screenshot](assets/example.gif)
+
+### [The thing](https://fakenopee.github.io/Static-Site-Generator/)
+
+
 ## Features
 
 - Custom Markdown parser (no external dependencies like `markdown` or `mistune`)
@@ -76,15 +81,10 @@ Static-Site-Generator/
 2. It copies everything from static/ into docs/.
 3. It recursively walks content/, converts each .md file to HTML using the custom parser, injects it into template.html, and writes the result to docs/.
 
-## Example
-
-![Generated Website Screenshot](assets/example.gif)
-
-[The thing](https://fakenopee.github.io/Static-Site-Generator/)
 
 ## Testing
 
-Run the test suite:
+You can run the test suite:
 ```bash
 python -m pytest src/ -v
 # or
