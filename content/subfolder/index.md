@@ -1,3 +1,8 @@
+# md things
+
+[<-gobacc](/)
+
+```
 # Cow 
 
 ![explosion](/images/coal.gif)
@@ -40,4 +45,5 @@
 17. **RS-12M Topol** - Russia - ~10,500 km - Older road-mobile ICBM
 18. **LGM-35 Sentinel** - USA - ~13,000+ km - Next-generation US ICBM (in development)
 19. **Oreshnik** - Russia - ~5,500+ km - Intermediate-range hypersonic missile
-20. **Yıldırımhan** - Turkey - ~6,000+ km - Turkey's emerging ICBM</code></pre><h3>ok</h3></div></article>
+20. **Yıldırımhan** - Turkey - ~6,000+ km - Turkey's emerging ICBM
+```
