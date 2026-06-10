@@ -1,10 +1,7 @@
 from enum import Enum
 
 
-
-
 class BlockType(Enum):
-    
     paragraph = "p"
     heading = "h"
     code = "code"
@@ -13,81 +10,37 @@ class BlockType(Enum):
     ordered_list = "ol"
 
 
-def block_to_block_type(block):
-
-    heading = False
-    if block[:7] == "#######":
+def block_to_block_type(block: str) -> BlockType:
+    if not block or not block.strip():
         return BlockType.paragraph
-    for i in range(7):
-        if i < len(block):
-            if "\n" in block:
-                break
-            if block[i] == "#":
-                heading = True
-            elif block[i] == " ":
-                break
-            else:
-                heading = False
-                break
-    if heading:
-        return BlockType.heading
 
-    if block[:4] == "```\n" or block[:4] == "\n```" and block[-3:] == "```" or block[-4:] == "```\n":
+    lines = block.split("\n")
+    stripped_lines = [line.strip() for line in lines if line.strip()]
+    first_line = stripped_lines[0] if stripped_lines else ""
+
+    if first_line.startswith("```") and block.rstrip().endswith("```"):
         return BlockType.code
 
+    if first_line.startswith(("# ", "## ", "### ", "#### ", "##### ", "###### ")):
+        return BlockType.heading
 
-
-    quote = False
-    new = block.split("\n")
-    for stuff in new:
-        if stuff == "":
-            continue
-        if stuff[0] != ">":
-            quote = False
-            break
-        quote = True
-  
-    if quote:
+    if stripped_lines and all(line.startswith(">") for line in stripped_lines):
         return BlockType.quote
-    
-    
-    unordered = False
-    for stuff in new:
-        if stuff == "":
-            continue
-        if stuff[0:2] != "- ":
-            unordered = False
-            break
-        unordered = True
-  
-    if unordered:
+
+    if stripped_lines and all(line.startswith(("- ", "* ")) for line in stripped_lines):
         return BlockType.unordered_list
 
-    
-    ordered_list = False
-    counter = 1
-    for stuff in new:
-        if stuff == "":
-            continue
-        if stuff[0:2] != f"{counter}.":
-            ordered_list = False
-            break
-        counter += 1
-        ordered_list = True
+    import re
 
-    if ordered_list:
+    ordered = True
+    expected = 1
+    for line in stripped_lines:
+        match = re.match(r"^(\d+)\.\s", line)
+        if not match or int(match.group(1)) != expected:
+            ordered = False
+            break
+        expected += 1
+    if ordered and expected > 1:
         return BlockType.ordered_list
 
-    return BlockType.paragraph 
-
-
-
-block = '''```
-stuff and stuff
-testing something
-what is this
-still ordered
-```'''
-
-print(block[0:5] == "```\n")
-
+    return BlockType.paragraph
